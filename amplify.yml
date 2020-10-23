@@ -3,7 +3,12 @@ frontend:
   phases:
     # IMPORTANT - Please verify your build commands
     build:
-      commands: [grunt]
+      commands:
+        - npm install -g grunt-cli
+        - npm install grunt --save-dev
+        - npm install grunt-contrib-htmlmin --save-dev
+        - grunt
+      
   artifacts:
     # IMPORTANT - Please verify your build output directory
     baseDirectory: /dist/
