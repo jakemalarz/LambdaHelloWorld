@@ -10,7 +10,7 @@ let now = date.toISOString();
 // We receive the object that triggers the function as a parameter
 exports.handler = async (event) => {
     // Extract values from event and format as strings
-    let name = JSON.stringify(`Hello from Lambda, ${event.firstName} ${event.lastName}`);
+    let name = JSON.stringify(`Hello from Lambda Hello World app, ${event.firstName} ${event.lastName}`);
     // Create JSON object with parameters for DynamoDB and store in a variable
     let params = {
         TableName:'HelloWorldDatabase',
