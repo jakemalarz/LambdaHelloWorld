@@ -1,0 +1,5 @@
+{
+    "tableName": "LambdaHelloWorldTable",
+    "partitionKeyName": "id",
+    "partitionKeyType": "S"
+}
