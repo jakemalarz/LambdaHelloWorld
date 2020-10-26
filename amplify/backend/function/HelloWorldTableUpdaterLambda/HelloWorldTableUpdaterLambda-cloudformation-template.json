@@ -69,7 +69,7 @@
         "Timeout": "25",
         "Code": {
           "S3Bucket": "amplify-lambdahelloworld-dev-154749-deployment",
-          "S3Key": "amplify-builds/HelloWorldTableUpdaterLambda-4e6e314154316e454234-build.zip"
+          "S3Key": "amplify-builds/HelloWorldTableUpdaterLambda-37676b542f59454d4579-build.zip"
         }
       }
     },
