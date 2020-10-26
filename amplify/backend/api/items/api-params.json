@@ -4,16 +4,8 @@
             "name": "/items",
             "lambdaFunction": "HelloWorldTableUpdaterLambda",
             "privacy": {
-                "private": true,
-                "auth": [
-                    "/POST",
-                    "/GET",
-                    "/PUT",
-                    "/PATCH",
-                    "/DELETE"
-                ]
-            },
-            "policyResourceName": "/items"
+                "open": true
+            }
         }
     ],
     "resourceName": "items",
@@ -24,7 +16,7 @@
         }
     ],
     "privacy": {
-        "auth": 1,
+        "auth": 0,
         "unauth": 0,
         "authRoleName": "amplify-lambdahelloworld-dev-154749-authRole",
         "unAuthRoleName": "amplify-lambdahelloworld-dev-154749-unauthRole"
@@ -38,5 +30,6 @@
                 "Arn"
             ]
         }
-    ]
+    ],
+    "uuid": "f7ceccc1"
 }
