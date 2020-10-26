@@ -1,21 +1,14 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "Lambda resource stack creation using Amplify CLI",
+  "Description": "Lambda Function resource stack creation using Amplify CLI",
   "Parameters": {
+    "CloudWatchRule": {
+      "Type": "String",
+      "Default": "NONE",
+      "Description": " Schedule Expression"
+    },
     "env": {
       "Type": "String"
-    },
-    "storageLambdaHelloWorldTableName": {
-      "Type": "String",
-      "Default": "storageLambdaHelloWorldTableName"
-    },
-    "storageLambdaHelloWorldTableArn": {
-      "Type": "String",
-      "Default": "storageLambdaHelloWorldTableArn"
-    },
-    "storageLambdaHelloWorldTableStreamArn": {
-      "Type": "String",
-      "Default": "storageLambdaHelloWorldTableArn"
     }
   },
   "Conditions": {
@@ -40,12 +33,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "LambdaHelloWorldTableTriggerb1a7195b",
+            "HelloWorldTableUpdaterLambda",
             {
               "Fn::Join": [
                 "",
                 [
-                  "LambdaHelloWorldTableTriggerb1a7195b",
+                  "HelloWorldTableUpdaterLambda",
                   "-",
                   {
                     "Ref": "env"
@@ -59,6 +52,9 @@
           "Variables": {
             "ENV": {
               "Ref": "env"
+            },
+            "REGION": {
+              "Ref": "AWS::Region"
             }
           }
         },
@@ -68,11 +64,12 @@
             "Arn"
           ]
         },
-        "Runtime": "nodejs10.x",
+        "Runtime": "nodejs12.x",
+        "Layers": [],
         "Timeout": "25",
         "Code": {
           "S3Bucket": "amplify-lambdahelloworld-dev-154749-deployment",
-          "S3Key": "amplify-builds/LambdaHelloWorldTableTriggerb1a7195b-653937375455524f7943-build.zip"
+          "S3Key": "amplify-builds/HelloWorldTableUpdaterLambda-4e6e314154316e454234-build.zip"
         }
       }
     },
@@ -82,12 +79,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "LambdaHelloWorldTableLambdaRoleb1a7195b",
+            "lambdahelloworldLambdaRolec429f22b",
             {
               "Fn::Join": [
                 "",
                 [
-                  "LambdaHelloWorldTableLambdaRoleb1a7195b",
+                  "lambdahelloworldLambdaRolec429f22b",
                   "-",
                   {
                     "Ref": "env"
@@ -156,59 +153,6 @@
             }
           ]
         }
-      }
-    },
-    "LambdaHelloWorldTableTriggerPolicy": {
-      "DependsOn": [
-        "LambdaExecutionRole"
-      ],
-      "Type": "AWS::IAM::Policy",
-      "Properties": {
-        "PolicyName": "lambda-trigger-policy",
-        "Roles": [
-          {
-            "Ref": "LambdaExecutionRole"
-          }
-        ],
-        "PolicyDocument": {
-          "Version": "2012-10-17",
-          "Statement": [
-            {
-              "Effect": "Allow",
-              "Action": [
-                "dynamodb:DescribeStream",
-                "dynamodb:GetRecords",
-                "dynamodb:GetShardIterator",
-                "dynamodb:ListStreams"
-              ],
-              "Resource": [
-                {
-                  "Ref": "storageLambdaHelloWorldTableStreamArn"
-                }
-              ]
-            }
-          ]
-        }
-      }
-    },
-    "LambdaHelloWorldTableTrigger": {
-      "Type": "AWS::Lambda::EventSourceMapping",
-      "DependsOn": [
-        "LambdaHelloWorldTableTriggerPolicy"
-      ],
-      "Properties": {
-        "BatchSize": 100,
-        "Enabled": true,
-        "EventSourceArn": {
-          "Ref": "storageLambdaHelloWorldTableStreamArn"
-        },
-        "FunctionName": {
-          "Fn::GetAtt": [
-            "LambdaFunction",
-            "Arn"
-          ]
-        },
-        "StartingPosition": "LATEST"
       }
     }
   },

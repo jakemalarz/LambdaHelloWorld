@@ -1,5 +1,5 @@
 {
     "triggerFunctions": [
-        "LambdaHelloWorldTableTriggerb1a7195b"
+        "HellowWorldTableUpdaterLambdaTrigger"
     ]
 }

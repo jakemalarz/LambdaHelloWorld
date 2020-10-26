@@ -1,20 +1,10 @@
 {
   "function": {
-    "LambdaHelloWorldTableTriggerb1a7195b": {
-      "service": "Lambda",
-      "providerPlugin": "awscloudformation",
+    "HelloWorldTableUpdaterLambda": {
       "build": true,
-      "dependsOn": [
-        {
-          "category": "storage",
-          "resourceName": "LambdaHelloWorldTable",
-          "attributes": [
-            "Name",
-            "Arn",
-            "StreamArn"
-          ]
-        }
-      ]
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": []
     }
   },
   "storage": {
