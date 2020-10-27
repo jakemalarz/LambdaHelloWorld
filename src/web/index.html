@@ -29,7 +29,7 @@
             // add content type header to object
             myHeaders.append("Content-Type", "application/json");
             // using built in JSON utility package turn object to string and store in a variable
-            var raw = JSON.stringify({"firstName":firstName,"lastName":lastName});
+            var raw = JSON.stringify({"fname":firstName,"lname":lastName});
             // create a JSON object with parameters for API call and store in a variable
             var requestOptions = {
                 method: 'POST',
@@ -38,7 +38,7 @@
                 redirect: 'follow'
             };
             // make API call with parameters and use promises to get response
-            fetch("https://2xsuyqqtwh.execute-api.us-east-1.amazonaws.com/dev/", requestOptions)
+            fetch("https://lavabrnxp8.execute-api.us-east-1.amazonaws.com/dev/items/", requestOptions)
             .then(response => response.text())
             .then(result => alert(JSON.parse(result).body))
             .catch(error => console.log('error', error));
