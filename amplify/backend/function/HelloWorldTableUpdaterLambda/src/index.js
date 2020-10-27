@@ -24,17 +24,14 @@ let now = date.toISOString();
 exports.handler = async (event) => {
     // Extract values from event and format as strings
    // let name = JSON.stringify(`Hello from Lambda Hello World app, ${event.firstName} ${event.lastName}`);
-    let fname = JSON.stringify('${event.fname}');
-    let lname = JSON.stringify('${event.lname}');
-    let msg = "Hello: " + fname;
+    let msg = "Hello: " + event.fname;
     // Create JSON object with parameters for DynamoDB and store in a variable
     let params = {
         TableName:'LambdaHelloWorldTable-dev',
         Item: {
             'id': now,
-            'fname' : fname,
-            'lname' : lname
-            
+            'fname' : event.fname,
+            'lname' : event.lname
         }
     };
     // Using await, make sure object writes to DynamoDB table before continuing execution
