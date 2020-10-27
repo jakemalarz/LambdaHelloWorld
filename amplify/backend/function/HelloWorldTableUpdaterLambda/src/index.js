@@ -24,8 +24,8 @@ let now = date.toISOString();
 exports.handler = async (event) => {
     // Extract values from event and format as strings
    // let name = JSON.stringify(`Hello from Lambda Hello World app, ${event.firstName} ${event.lastName}`);
-    let fname = event.fname;
-    let lname = event.lname;
+    let fname = JSON.stringify('${event.fname}');
+    let lname = JSON.stringify('${event.lname}');
     let msg = "Hello: " + fname;
     // Create JSON object with parameters for DynamoDB and store in a variable
     let params = {
